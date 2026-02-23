@@ -1,0 +1,9 @@
+<nav class="navbar glass-morphism">
+    <a href="{% url 'ml_app:home' %}" class="nav-brand">DeepGuard AI</a>
+    <div class="nav-links">
+        <a href="{% url 'ml_app:home' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+        <a href="{% url 'ml_app:about' %}"
+            class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a>
+    </div>
+</nav>

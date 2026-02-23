@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container animate-fade-in" style="margin-top: 100px; margin-bottom: 50px;">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <h1 class="text-center mb-5" style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 3rem;">
+                About <span class="gradient-text">DeepGuard AI</span>
+            </h1>
+
+            <!-- Main Introduction Card -->
+            <div class="glass-panel p-5 mb-5">
+                <h2 style="color: var(--primary);">Our Mission</h2>
+                <p style="color: var(--text-light); font-size: 1.1rem; line-height: 1.8;">
+                    In an era where digital content can be easily manipulated, DeepGuard AI stands as a sentinel of
+                    authenticity.
+                    Our mission is to provide accessible, high-accuracy deepfake detection tools to empower individuals
+                    and organizations
+                    to verify the integrity of digital media.
+                </p>
+            </div>
+
+            <!-- Technology Section -->
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="glass-panel p-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <span style="font-size: 2rem; margin-right: 15px;">🧠</span>
+                            <h3 style="margin: 0;">The Model</h3>
+                        </div>
+                        <p style="color: var(--text-muted);">
+                            We utilize a state-of-the-art hybrid architecture combining <strong>ResNeXt</strong> and
+                            <strong>LSTM</strong> (Long Short-Term Memory) networks.
+                        </p>
+                        <ul style="color: var(--text-light); padding-left: 20px;">
+                            <li class="mb-2"><strong>ResNeXt-50</strong> extracts high-level spatial features from
+                                individual video frames.</li>
+                            <li><strong>LSTM</strong> analyzes the temporal sequence of these features to detect
+                                inconsistencies across time.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="glass-panel p-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <span style="font-size: 2rem; margin-right: 15px;">⚙️</span>
+                            <h3 style="margin: 0;">The Process</h3>
+                        </div>
+                        <p style="color: var(--text-muted);">
+                            Our detection pipeline operates in three precise stages:
+                        </p>
+                        <ol style="color: var(--text-light); padding-left: 20px;">
+                            <li class="mb-2"><strong>Face Extraction:</strong> Automatic detection and cropping of faces
+                                from video frames.</li>
+                            <li class="mb-2"><strong>Feature Analysis:</strong> Analyzing facial artifacts and temporal
+                                jitter.</li>
+                            <li><strong>Classification:</strong> Assigning a confidence score to determine Real vs.
+                                Fake.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team or Contact (Optional placeholder) -->
+            <div class="glass-panel p-4 text-center mt-4">
+                <p class="mb-0" style="color: var(--text-muted);">
+                    Built with <span style="color: #e91e63;">&hearts;</span> using Django and PyTorch.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

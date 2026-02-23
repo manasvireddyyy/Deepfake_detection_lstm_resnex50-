@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{%block content%}
+<div class="container hero-section animate-fade-in mt-5">
+    <h1 class="hero-title">Detect <span class="gradient-text">Deepfakes</span> with AI</h1>
+    <p class="hero-subtitle">Advanced machine learning algorithms to verify video authenticity in seconds.</p>
+
+    <div class="upload-container">
+        <div class="glass-panel upload-box">
+            <div class="upload-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                    style="color: var(--primary);">
+                    <polyline points="16 16 12 12 8 16"></polyline>
+                    <line x1="12" y1="12" x2="12" y2="21"></line>
+                    <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+                    <polyline points="16 16 12 12 8 16"></polyline>
+                </svg>
+            </div>
+            <h3>Upload Video</h3>
+            <p style="color: var(--text-muted); margin-top: 10px; margin-bottom: 20px;">Drag & drop or click to browse
+            </p>
+
+            <form class="form" method="POST" enctype="multipart/form-data" name="video-upload" id="video-upload">
+                {% csrf_token %}
+                <div class="form-group" style="text-align: left;">
+
+                    <div style="position: relative; overflow: hidden; display: inline-block; width: 100%;">
+                        <button type="button" class="btn btn-outline-secondary"
+                            style="width: 100%; border: 2px dashed var(--text-muted); padding: 10px; border-radius: 12px; color: var(--text-muted);"
+                            onclick="document.getElementById('{{form.upload_video_file.id_for_label}}').click()">Select
+                            File</button>
+                        <div style="opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            {{form.upload_video_file}}
+                        </div>
+                    </div>
+
+                    {%if form.upload_video_file.errors%}
+                    {%for each_error in form.upload_video_file.errors%}
+                    <div class="alert alert-danger mt-2">
+                        {{each_error}}
+                    </div>
+                    {%endfor%}
+                    {%endif%}
+                </div>
+
+                <div class="form-group" style="margin-top: 25px; text-align: left;">
+                    <label style="color: var(--text-muted); font-weight: 500;">Analysis Sequence Length: <span
+                            id="slider-value" style="color: var(--primary); font-weight: bold;"></span></label>
+                    <input type="number" hidden="hidden" id="{{form.sequence_length.id_for_label}}"
+                        name="{{form.sequence_length.name}}">
+                    <div id='slider' style="margin-top: 10px;"></div>
+
+                    {%if form.sequence_length.errors%}
+                    {%for each_error in form.sequence_length.errors%}
+                    <div class="alert alert-danger mt-2">
+                        {{each_error}}
+                    </div>
+                    {%endfor%}
+                    {%endif%}
+                </div>
+
+                <button id="videoUpload" type="submit" name="submit" class="btn-primary">Analyze Video</button>
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+{%block js_cripts%}
+<script src="{%static 'js/script.js'%}"></script>
+<script>
+    $(function () {
+        var sliderSequenceNumbers = [10, 20, 40, 60, 80, 100];
+        var slider = $("div#slider").slider({
+            value: 1,
+            min: 0,
+            max: sliderSequenceNumbers.length - 1,
+            slide: function (event, ui) {
+                $('#{{form.sequence_length.id_for_label}}').val(sliderSequenceNumbers[ui.value]);
+                $('#{{form.sequence_length.id_for_label}}').val(sliderSequenceNumbers[ui.value]);
+                $('#slider-value').html(sliderSequenceNumbers[ui.value]);
+            }
+        });
+        $("#{{form.sequence_length.id_for_label}}").val(sliderSequenceNumbers[$("#slider").slider("value")]);
+        $('#slider-value').html(sliderSequenceNumbers[$("#slider").slider("value")]);
+    });
+</script>
+{%endblock%}
