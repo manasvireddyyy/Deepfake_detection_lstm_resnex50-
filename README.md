@@ -85,3 +85,4 @@ This project aims to detect deepfake videos using a Deep Learning approach combi
 
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request.
+# Deepfake Detection Project
